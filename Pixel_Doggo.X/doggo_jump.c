@@ -137,7 +137,7 @@ void obstacles() {
 
     if (collision) {  // check for collision
         game_over = 1;  // set game_over flag
-        ssd1306_drawString("GAME OVER",0,15);  // print "GAME OVER" in upper right hand corner
+        ssd1306_drawString("GAME OVER",0,0);  // print "GAME OVER" in upper right hand corner
         for (i=0; i<3; i++) {
             obstacle_flag[i] = 0;   // reset flags
             obstacle_pos[i] = 0;    // reset positions
@@ -167,4 +167,30 @@ char check_collision(signed short obstacle_pos) {  // check for a collision
         collision = 1;
     }
     return collision;
+}
+
+void print_score(char reset) {
+    static int score = 0;
+    unsigned char score_string[20];
+    
+    if (reset) {
+        score = 0;
+    }
+    else {
+        if (score<1000) {
+            sprintf(score_string,"Score: %d",score);
+            ssd1306_drawString(score_string,0,15);
+            score++;
+        }
+        else if (score<10000) {
+            sprintf(score_string,"Score: %d",score);
+            ssd1306_drawString(score_string,0,14);
+            score++;
+        }
+        else {
+            sprintf(score_string,"Score: %d",score);
+            ssd1306_drawString(score_string,0,13);
+            score++;
+        }
+    }
 }

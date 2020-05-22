@@ -10,6 +10,7 @@ void print_pbtp(void);
 void obstacles(void);
 void draw_obstacle(signed short pos);
 char check_collision(signed short obstacle_pos);
+void print_score(char reset);
 
 extern char doggo_height;
 extern char game_over;

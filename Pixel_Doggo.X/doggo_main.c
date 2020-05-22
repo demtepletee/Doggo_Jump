@@ -112,6 +112,7 @@ int main() {
             for (frame=0; frame<6; frame++) {
                 doggo_run(frame);   // play next frame in run animation
                 ground_move();      // play next frame in ground move
+                print_score(0);     // print score
                 obstacles();        // move existing obstacles and create new ones
                 ssd1306_update();
                 wait(FRAME_DELAY);
@@ -125,6 +126,7 @@ int main() {
                         doggo_jump(i);  // play next frame of jump
                         doggo_height = jump_parabola[i];  // send height to doggo_height for collision detection
                         ground_move();
+                        print_score(0);
                         obstacles();
                         ssd1306_update();
                         wait(FRAME_DELAY);
@@ -136,6 +138,7 @@ int main() {
                 }
             }
             if (game_over) {
+                print_score(1); // reset score
                 game_over = 0;  // reset game_over
                 wait(2);
                 break;
